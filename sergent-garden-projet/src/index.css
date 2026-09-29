@@ -1,0 +1,11 @@
+/*
+ * Correctifs de base (appliqués à toutes les pages).
+ *
+ * Les feuilles d'amélioration définissent des `display` sur des éléments qui
+ * utilisent aussi l'attribut HTML `hidden` (badge pause, boutons pause/
+ * reprise, overlay). Sans cette règle, l'attribut est écrasé par les styles
+ * d'auteur et les éléments restent visibles à tort.
+ */
+[hidden] {
+  display: none !important;
+}

@@ -1,0 +1,43 @@
+SERPENT GARDEN - GUIDE RAPIDE
+
+1. BUT DU JEU
+Le but est simple : fais manger le plus de pommes vertes possible au serpent.
+Chaque pomme ajoute 8 px à la longueur du serpent et augmente ton score.
+
+2. ZONE DE JEU
+La zone jouable est le grand carre vert fonce.
+La zone grise autour est hors-jeu.
+Si le serpent touche un bord, la partie s'arrete immediatement.
+
+Illustration simple :
+
+------------------------------------------------
+|                                              |
+|   +--------------------------------------+   |
+|   |   serpent -> OOOO                    |   |
+|   |                * pomme               |   |
+|   |                                      |   |
+|   +--------------------------------------+   |
+|                                              |
+------------------------------------------------
+
+3. CONTROLES
+- Fleche du haut : monter
+- Fleche du bas : descendre
+- Fleche gauche : aller a gauche
+- Fleche droite : aller a droite
+
+4. COMMENT GAGNER
+- Reste au centre de la zonensi possible.
+- Anticipe les bords.
+- Evite de t'entre croiser toi-même.
+- Cherche à aligner les pommes sans te fermer la route.
+
+5. SCORES
+- Nouveau score : derniere partie terminée.
+- Ancien score : partie précédente.
+- Meilleur score : record total.
+
+6. CONSEIL
+Plus tu gardes de l'espace libre devant le serpent, plus tu peux prolonger la partie.
+Prends toujours un trajet qui te laisse une sortie.

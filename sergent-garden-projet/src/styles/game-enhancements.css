@@ -1,0 +1,245 @@
+/*
+ * Améliorations de présentation — page jeu uniquement.
+ * Portée sous .page-shell--game pour ne toucher ni l'accueil ni l'aide.
+ * Même langage visuel que home-enhancements.css : dégradés verts,
+ * pastilles d'icône, chevrons animés, focus clavier cohérent.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Marque de l'en-tête : barre d'accent sur le kicker                   */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .game-brand__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-shell--game .game-brand__kicker::before {
+  content: "";
+  width: 6px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 0 10px rgba(140, 255, 123, 0.45);
+  flex: 0 0 auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* Pills d'état (Score / Meilleur / Ancien)                             */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .status-pill {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(10, 34, 20, 0.85), rgba(5, 20, 11, 0.92)),
+    radial-gradient(circle at top right, rgba(140, 255, 158, 0.1), transparent 60%);
+  border: 1px solid rgba(140, 255, 158, 0.16);
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.page-shell--game .status-pill:hover {
+  border-color: rgba(140, 255, 158, 0.32);
+  transform: translateY(-1px);
+}
+
+.page-shell--game .status-pill span {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-shell--game .status-pill strong {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #d9ffe0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* La pill « Retour accueil » garde un rendu de bouton, pas de stat */
+.page-shell--game a.back-link {
+  display: inline-flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page-shell--game a.back-link span {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ */
+/* Zone de jeu : message de statut avec pastille lumineuse              */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .game-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-shell--game .game-message::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(140, 255, 123, 0.6);
+  animation: sgx-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes sgx-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Sonde de temps : plus lisible tout en restant discrète               */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .game-time-probe__value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
+/* Contrôles directionnels : croix plus homogène                        */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .direction-button {
+  display: grid;
+  place-items: center;
+  min-height: 56px;
+  border-radius: 16px;
+}
+
+.page-shell--game .direction-button--up {
+  min-height: 46px;
+}
+
+.page-shell--game .direction-row {
+  gap: 12px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Actions principales (Nouveau jeux / Pause / Reprendre)               */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .control-actions {
+  gap: 12px;
+}
+
+.page-shell--game .control-actions .menu-button {
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  border-radius: 16px;
+}
+
+.page-shell--game .control-actions .menu-button span {
+  white-space: nowrap;
+  font-size: 0.92rem;
+}
+
+.page-shell--game .control-actions .menu-button--primary {
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  background:
+    linear-gradient(180deg, #a5ff96, #4ecb6f),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.35), transparent 55%);
+  box-shadow:
+    0 14px 30px rgba(64, 200, 100, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+/* ------------------------------------------------------------------ */
+/* Badge pause : pastille animée en plus du texte                       */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .pause-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-shell--game .pause-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffd166;
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
+  animation: sgx-pulse 1.4s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Overlay game over : kicker pill, métriques, actions                  */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .score-overlay .score-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(249, 115, 115, 0.1);
+  border: 1px solid rgba(249, 115, 115, 0.28);
+  color: #ffb1b1;
+}
+
+.page-shell--game .score-overlay .score-meta > div {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.page-shell--game .score-overlay .score-meta > div:hover {
+  border-color: rgba(140, 255, 158, 0.3);
+  transform: translateY(-2px);
+}
+
+.page-shell--game .score-overlay .score-meta strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
+/* Focus clavier uniforme                                               */
+/* ------------------------------------------------------------------ */
+
+.page-shell--game .menu-button:focus-visible,
+.page-shell--game .direction-button:focus-visible,
+.page-shell--game .game-btn--back:focus-visible {
+  outline: 2px solid rgba(140, 255, 158, 0.65);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive : on garde les tailles compactes du CSS d'origine         */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 640px) {
+  .page-shell--game .status-pill strong {
+    font-size: 1.1rem;
+  }
+
+  .page-shell--game .direction-button {
+    min-height: 50px;
+  }
+
+  .page-shell--game .control-actions .menu-button {
+    min-height: 46px;
+  }
+}
