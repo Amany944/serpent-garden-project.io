@@ -227,6 +227,37 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Desktop : l'aire de jeu tient dans la fenêtre                       */
+/* ------------------------------------------------------------------ */
+/*
+ * Sur desktop, le bas de la zone de jeu (message d'état + sonde de temps)
+ * passait sous le bord de l'écran : le canvas (ratio 1/1, largeur 100 %)
+ * poussait la hauteur du contenu au-delà de 100vh, masqué par
+ * overflow: hidden.
+ *
+ * Deux causes, corrigées ensemble :
+ *  1. React monte l'app dans <div id="root">, qui devient l'unique enfant
+ *     grille du body : header et main ne participaient pas aux lignes de
+ *     la grille .page-shell--game. display: contents rend #root transparent
+ *     pour que la grille d'origine fonctionne comme dans le HTML initial.
+ *  2. La ligne du contenu est contrainte à l'espace restant (minmax(0,1fr))
+ *     au lieu de « auto » ; le canvas s'adapte ensuite seul via
+ *     resizeCanvas() du moteur (ResizeObserver sur le cadre).
+ *
+ * Mobile (<= 640px) conserve le comportement d'origine, media query >= 641px.
+ */
+
+@media (min-width: 641px) {
+  .page-shell--game > #root {
+    display: contents;
+  }
+
+  .page-shell--game {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive : on garde les tailles compactes du CSS d'origine         */
 /* ------------------------------------------------------------------ */
 
