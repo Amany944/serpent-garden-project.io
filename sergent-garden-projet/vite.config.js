@@ -2,7 +2,12 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
-export default defineConfig({
+const REPO_NAME = 'serpent-garden-project.io'
+
+export default defineConfig(({ mode }) => ({
+  // GitHub Pages sert le site depuis un sous-chemin :
+  // https://<utilisateur>.github.io/serpent-garden-project.io/
+  base: mode === 'production' ? `/${REPO_NAME}/` : '/',
   plugins: [react()],
   server: {
     proxy: {
@@ -15,4 +20,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))
