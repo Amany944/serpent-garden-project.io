@@ -83,7 +83,11 @@ export default function GamePage() {
         const stats = payload.stats || {}
         game.initStats(stats.previous_score ?? 0, stats.best_score ?? 0)
         game.resize({ rerender: false })
-        game.reset()
+        // Ne reinitialise pas si le joueur a deja lance une partie pendant
+        // le chargement des stats (sinon la partie en cours serait perdue).
+        if (!game.isStarted()) {
+          game.reset()
+        }
       })
       .catch(() => {
         if (!active) {
@@ -91,7 +95,9 @@ export default function GamePage() {
         }
         game.initStats(0, 0)
         game.resize({ rerender: false })
-        game.reset()
+        if (!game.isStarted()) {
+          game.reset()
+        }
       })
 
     const handleResize = () => {

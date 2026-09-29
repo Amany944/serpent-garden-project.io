@@ -475,6 +475,11 @@ export function createSnakeGame({ canvas, boardFrame, saveScore, callbacks }) {
   function initStats(previousScore, bestScore) {
     STATE.previousScore = previousScore
     STATE.bestScore = bestScore
+    updateStatus()
+  }
+
+  function isStarted() {
+    return STATE.started
   }
 
   function dispose() {
@@ -494,6 +499,7 @@ export function createSnakeGame({ canvas, boardFrame, saveScore, callbacks }) {
     resize: resizeCanvas,
     refreshTimeProbe: updateTimeProbeDisplay,
     initStats,
+    isStarted,
     dispose,
   }
 }
